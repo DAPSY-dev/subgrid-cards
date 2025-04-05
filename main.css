@@ -1,0 +1,74 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+}
+
+.cards {
+  --_spacing-x: 1rem;
+  --_spacing-y: 1rem;
+  --_gap-x: 1rem;
+  --_gap-y: 0.5rem;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(100%, 18.75rem);
+  gap: var(--_gap-y) var(--_gap-x);
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.card {
+  --_child-element-count: 3;
+
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span var(--_child-element-count);
+  padding-block-end: var(--_spacing-y);
+  scroll-snap-align: center;
+  background-color: rgb(250 250 250);
+}
+
+.card__figure {
+  margin: 0;
+
+  /* To get the correct spacing-y we need to subtract the gap-y from the .cards */
+  padding-block-end: calc(var(--_spacing-y) - var(--_gap-y));
+}
+
+.card__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.card__header {
+  padding-inline: var(--_spacing-x);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: rgb(50 50 50);
+}
+
+.card__content {
+  padding-inline: var(--_spacing-x);
+}
+
+.card__text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgb(25 25 25);
+}
